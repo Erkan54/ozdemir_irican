@@ -428,11 +428,11 @@ function initPreloader() {
   var preloader = document.getElementById('preloader');
   if (!preloader) return;
 
-  // Fade out preloader 2.3s after page load (allowing 2s liquid fill + wave motion to complete)
+  // Fade out preloader 1.1s after page load (allowing 1s liquid fill + wave motion to complete, 0.4s fade-out -> 1.5s total)
   function hidePreloader() {
     setTimeout(function () {
       preloader.classList.add('is-hidden');
-    }, 2300);
+    }, 1100);
   }
 
   if (document.readyState === 'complete') {
@@ -440,6 +440,6 @@ function initPreloader() {
   } else {
     window.addEventListener('load', hidePreloader);
     // Fallback safety timeout if load event is delayed
-    setTimeout(hidePreloader, 2500);
+    setTimeout(hidePreloader, 1300);
   }
 }

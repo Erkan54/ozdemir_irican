@@ -2441,7 +2441,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s var(--ease-editorial), visibility 0.5s var(--ease-editorial);
+  transition: opacity 0.4s var(--ease-editorial), visibility 0.4s var(--ease-editorial);
 }
 
 .preloader-overlay.is-hidden {
@@ -2463,7 +2463,7 @@ button {
   position: relative;
 }
 
-/* Light blue glowing aura/beam behind the water drop (2.3s opacity build-up) */
+/* Light blue glowing aura/beam behind the water drop (1.1s opacity build-up) */
 .water-drop-wrapper::before {
   content: '';
   position: absolute;
@@ -2478,7 +2478,7 @@ button {
   z-index: 0;
   opacity: 0;
   pointer-events: none;
-  animation: preloaderAuraGlow 2.3s ease-in-out forwards;
+  animation: preloaderAuraGlow 1.1s ease-in-out forwards;
 }
 
 @keyframes preloaderAuraGlow {
@@ -2504,10 +2504,10 @@ button {
   stroke-width: 4.5px;
 }
 
-/* Liquid fill & wave animation (2s fill time + wave slosh) */
+/* Liquid fill & wave animation (1s fill time + wave slosh) */
 .liquid-wave {
-  animation: liquidFill 2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards,
-             liquidWaveMotion 2.2s ease-in-out infinite alternate;
+  animation: liquidFill 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards,
+             liquidWaveMotion 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes liquidFill {
