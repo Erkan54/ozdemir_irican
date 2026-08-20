@@ -423,10 +423,45 @@ function initMobileMenu() {
 
 /**
  * Water Drop Liquid Preloader Screen Handler
+ * Only displays on:
+ * 1) First visit to homepage in current session
+ * 2) Page reload (F5 / browser refresh)
+ * Skips instantly on internal page transitions back to homepage
  */
 function initPreloader() {
   var preloader = document.getElementById('preloader');
   if (!preloader) return;
+
+  var isReload = false;
+  try {
+    var navEntries = window.performance && performance.getEntriesByType && performance.getEntriesByType('navigation');
+    if (navEntries && navEntries.length > 0) {
+      isReload = navEntries[0].type === 'reload';
+    } else if (window.performance && window.performance.navigation) {
+      isReload = window.performance.navigation.type === 1;
+    }
+  } catch (e) {
+    isReload = false;
+  }
+
+  var hasVisited = false;
+  try {
+    hasVisited = sessionStorage.getItem('has_visited_home') === 'true';
+  } catch (e) {
+    hasVisited = false;
+  }
+
+  var shouldShow = !hasVisited || isReload;
+
+  if (!shouldShow) {
+    preloader.style.display = 'none';
+    preloader.classList.add('is-hidden');
+    return;
+  }
+
+  try {
+    sessionStorage.setItem('has_visited_home', 'true');
+  } catch (e) {}
 
   // Fade out preloader 1.1s after page load (allowing 1s liquid fill + wave motion to complete, 0.4s fade-out -> 1.5s total)
   function hidePreloader() {
